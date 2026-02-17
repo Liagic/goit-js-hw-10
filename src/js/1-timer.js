@@ -65,7 +65,7 @@ const options = {
         position: 'topRight',
         theme: 'dark',
         icon: '',
-        iconUrl: './img/error.svg',
+        iconUrl: '../img/error.svg',
         backgroundColor: '#ef4040',
       });
     } else {

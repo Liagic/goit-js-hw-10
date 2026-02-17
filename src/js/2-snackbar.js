@@ -25,7 +25,9 @@ formDelay.addEventListener('submit', event => {
   event.preventDefault();
   const delay = formDelay.elements['delay'].value;
   const status = formDelay.querySelector('input[name="state"]:checked').value;
-  createMessage(delay, status).then(messageSuccess).catch(messageReject);
+  createMessage(delay, status)
+    .then(result => messageSuccess(`Fulfilled promise in ${result}ms`))
+    .catch(error => messageReject(`Rejected promise in ${error}ms`));
   formDelay.reset();
 });
 function createMessage(delay, status) {
@@ -33,9 +35,9 @@ function createMessage(delay, status) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (status === 'fulfilled') {
-        resolve(`Fulfilled promise in ${checkedDelay}ms`);
+        resolve(checkedDelay);
       } else {
-        reject(`Rejected promise in ${checkedDelay}ms`);
+        reject(checkedDelay);
       }
     }, checkedDelay);
   });
